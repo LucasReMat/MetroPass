@@ -22,9 +22,14 @@ int main()
     printf("Estacoes:\n");
     i = 0;
     while(i < 2){
-        printf("\t%d: %s\n", vp_estacoes[i]->idEstacao, vp_estacoes[i]->nomeEstacao);
+        printf("\t%d: %s\n", vp_estacoes[i]->id, vp_estacoes[i]->nomeEstacao);
         i++;
     }
+
+    printf("\n--------------------------------------\n\n");
+
+    registrarEntrada(0, 0);
+    registrarSaida(0, 1);
 
     return 0;
 }

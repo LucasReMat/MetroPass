@@ -51,7 +51,7 @@ void cadastrarEstacao(int id){
         vp_estacoes[id] = (p_estacao)malloc(sizeof(Estacao));
         fflush(stdin);
 
-        vp_estacoes[id]->idEstacao = id;
+        vp_estacoes[id]->id = id;
 
         printf("Digite o nome da estacao:\n");
         gets(vp_estacoes[id]->nomeEstacao);
@@ -83,9 +83,48 @@ void testeData(){
     for (int i = 0; i < 2; i++)
     {
         vp_estacoes[i] = (p_estacao)malloc(sizeof(Estacao));
-        vp_estacoes[i]->idEstacao = i;
+        vp_estacoes[i]->id = i;
     }
 
     strcpy(vp_estacoes[0]->nomeEstacao, "Escao Alberto");
     strcpy(vp_estacoes[1]->nomeEstacao, "Escao Bazille");
+}
+
+/**
+ * Registra uma entrada em uma estação. esta ação aumenta o numero total de visitantes e visitantes atuais da estação, além disso
+ * também registra a estação de entrada de um passageiro e o horario que o mesmo o fez.
+ * @param idPassageiro o id do cartão do passageiro 
+ * @param idEstacao o id da estação visitada
+*/
+void registrarEntrada(int idPassageiro, int idEstacao){
+    time_t momentoVisita = time(NULL);
+
+    //cadastrando visita nos dados da estacao
+    vp_estacoes[idEstacao]->visitantesTotais++;
+
+    //cadastrando visita nos dados do passageiro
+    vp_passageiros[idPassageiro]->horarioEntrada = momentoVisita;
+    vp_passageiros[idPassageiro]->estacaoEntrada = idEstacao;
+
+    printf(ctime(&vp_passageiros[idPassageiro]->horarioEntrada));
+    printf("%s entrou na estacao %s\n\n", vp_passageiros[idPassageiro]->nomePassageiro, vp_estacoes[idEstacao]->nomeEstacao);
+}
+
+/**
+ * Registra uma saida em uma estação, esta ação não afeta o numero total de visitantes. 
+ * diminui os visitantes atuais da estação de origem e aumenta os da estação de chegada.
+ * @param idPassageiro o id do cartão do passageiro 
+ * @param idEstacao o id da estação visitada
+*/
+void registrarSaida(int idPassageiro, int idEstacaoDeChegada){
+    time_t momentoVisita = time(NULL);
+
+    vp_estacoes[idEstacaoDeChegada]->visitantesTotais++;
+
+    //cadastrando visita nos dados do passageiro
+    vp_passageiros[idPassageiro]->horarioSaida = momentoVisita;
+    vp_passageiros[idPassageiro]->estacaoSaida= idEstacaoDeChegada;
+
+    printf(ctime(&vp_passageiros[idPassageiro]->horarioSaida));
+    printf("%s saiu na estacao %s\n\n", vp_passageiros[idPassageiro]->nomePassageiro, vp_estacoes[idEstacaoDeChegada]->nomeEstacao);
 }
