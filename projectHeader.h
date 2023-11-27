@@ -14,8 +14,6 @@ typedef struct {
 } Passageiro;
 typedef Passageiro *p_passageiro;
 
-extern p_passageiro vp_passageiros[MAX_ITENS];
-
 typedef struct 
 {
     int idEstacao;
@@ -25,7 +23,8 @@ typedef struct
 } Estacao;
 typedef Estacao *p_estacao;
 
-extern p_estacao vp_estacoes[MAX_ITENS];
 
+p_passageiro vp_passageiros[MAX_ITENS];
+p_estacao vp_estacoes[MAX_ITENS];
 
 #endif // PROJECTHEADER_H_INCLUDED
