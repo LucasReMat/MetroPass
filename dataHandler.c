@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 #include "projectHeader.h"
 
@@ -59,4 +60,32 @@ void cadastrarEstacao(int id){
     else{
         printf("ERROR! ID DE PASSAGEIRO JÁ CADASTRADO!");
     }
+}
+
+/**
+ * Gera dados para os testes, gera 5 passageiros e 2 estações
+*/
+void testeData(){
+    //cadastrando passageiros
+    for (int i = 0; i < 5; i++)
+    {
+        vp_passageiros[i] = (p_passageiro)malloc(sizeof(Passageiro));
+        vp_passageiros[i]->idCartao = i;
+    }
+
+    strcpy(vp_passageiros[0]->nomePassageiro, "Lucas");
+    strcpy(vp_passageiros[1]->nomePassageiro, "Jonas");
+    strcpy(vp_passageiros[2]->nomePassageiro, "Lucca");
+    strcpy(vp_passageiros[3]->nomePassageiro, "Mat");
+    strcpy(vp_passageiros[4]->nomePassageiro, "Pedro");
+
+    //cadastrando estacoes
+    for (int i = 0; i < 2; i++)
+    {
+        vp_estacoes[i] = (p_estacao)malloc(sizeof(Estacao));
+        vp_estacoes[i]->idEstacao = i;
+    }
+
+    strcpy(vp_estacoes[0]->nomeEstacao, "Escao Alberto");
+    strcpy(vp_estacoes[1]->nomeEstacao, "Escao Bazille");
 }

@@ -5,36 +5,25 @@
 #include "projectHeader.h"
 #include "dataHandler.c"
 
-void registrarEntrada(Passageiro* passageiros, Estacao* estacaoVisitada){
-
-}
-
 int main()
 {
     inicializacao();
 
-    //cadastrando dados de teste
-    int i = 0;
-    while(i++ < 3){
-        cadastrarPassageiro(i);
-    }
-
-    i = 0;
-    while(i++ < 2){
-        cadastrarEstacao(i);
-    }
+    testeData();
 
     //imprimindo dados de teste
     printf("Passageiros:\n");
-    i = 0;
-    while(i++ < 3){
+    int i = 0;
+    while(i < 5){
         printf("\t%d: %s\n", vp_passageiros[i]->idCartao, vp_passageiros[i]->nomePassageiro);
+        i++;
     }
 
     printf("Estacoes:\n");
     i = 0;
-    while(i++ < 2){
+    while(i < 2){
         printf("\t%d: %s\n", vp_estacoes[i]->idEstacao, vp_estacoes[i]->nomeEstacao);
+        i++;
     }
 
     return 0;
