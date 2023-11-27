@@ -3,12 +3,22 @@
 #include <time.h>
 #include "projectHeader.h"
 
+/**
+ * Limpa os vetores de ponteiros vp_estacoes e vp_passageiros preenchendo ambos com a informção NULL
+*/
+void inicializacao(){
+    int i;
+
+    for (i=0; i<MAX_ITENS; i++){
+        vp_estacoes[i] = NULL;
+        vp_passageiros[i] = NULL;
+    }
+
+}
+
 int main()
 {
-    Passageiro teste;
-    teste.idCartao = 0;
-
-    printf("%d", teste.idCartao);
+    inicializacao();
 
     return 0;
 }
