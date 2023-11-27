@@ -6,7 +6,7 @@
 #include "projectHeader.h"
 
 /**
- * Limpa os vetores de ponteiros vp_estacoes e vp_passageiros preenchendo ambos com a informção NULL
+ * Limpa os vetores de ponteiros vp_estacoes e vp_passageiros preenchendo ambos com a informação NULL
 */
 void inicializacao(){
     int i;
@@ -16,6 +16,12 @@ void inicializacao(){
         vp_passageiros[i] = NULL;
     }
 
+}
+
+void menuPrincipal() {
+    printf("------------------------------------\n");
+    printf("SISTEMA DE CONTROLE\n");
+    printf("------------------------------------\n");
 }
 
 /**
@@ -41,9 +47,9 @@ void cadastrarPassageiro(int id){
 }
 
 /**
- * cadastra um novo passageiro no vetor de passageiros.
+ * cadastra uma novo estação no vetor de estações.
  * caso o ID do mesmo já tenha sigo utilizado a função IMPRIME uma mensagem de error.
- * @param id o numero de identificação do passageiro
+ * @param id o numero de identificação da estação
 */
 void cadastrarEstacao(int id){
     if(vp_estacoes[id] == NULL){
@@ -58,7 +64,7 @@ void cadastrarEstacao(int id){
     }
 
     else{
-        printf("ERROR! ID DE PASSAGEIRO JÁ CADASTRADO!");
+        printf("ERROR! ID DE ESTACAO JÁ CADASTRADO!");
     }
 }
 
@@ -67,7 +73,7 @@ void cadastrarEstacao(int id){
 */
 void testeData(){
     //cadastrando passageiros
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 2; i++)
     {
         vp_passageiros[i] = (p_passageiro)malloc(sizeof(Passageiro));
         vp_passageiros[i]->idCartao = i;
@@ -75,19 +81,19 @@ void testeData(){
 
     strcpy(vp_passageiros[0]->nomePassageiro, "Lucas");
     strcpy(vp_passageiros[1]->nomePassageiro, "Jonas");
-    strcpy(vp_passageiros[2]->nomePassageiro, "Lucca");
-    strcpy(vp_passageiros[3]->nomePassageiro, "Mat");
-    strcpy(vp_passageiros[4]->nomePassageiro, "Pedro");
+    // strcpy(vp_passageiros[2]->nomePassageiro, "Lucca");
+    // strcpy(vp_passageiros[3]->nomePassageiro, "Mat");
+    // strcpy(vp_passageiros[4]->nomePassageiro, "Pedro");
 
-    //cadastrando estacoes
+    //Cadastrando estações
     for (int i = 0; i < 2; i++)
     {
         vp_estacoes[i] = (p_estacao)malloc(sizeof(Estacao));
         vp_estacoes[i]->id = i;
     }
 
-    strcpy(vp_estacoes[0]->nomeEstacao, "Escao Alberto");
-    strcpy(vp_estacoes[1]->nomeEstacao, "Escao Bazille");
+    strcpy(vp_estacoes[0]->nomeEstacao, "Estacao Alberto");
+    strcpy(vp_estacoes[1]->nomeEstacao, "Estacao Bazille");
 }
 
 /**
@@ -106,8 +112,8 @@ void registrarEntrada(int idPassageiro, int idEstacao){
     vp_passageiros[idPassageiro]->horarioEntrada = momentoVisita;
     vp_passageiros[idPassageiro]->estacaoEntrada = idEstacao;
 
-    printf(ctime(&vp_passageiros[idPassageiro]->horarioEntrada));
-    printf("%s entrou na estacao %s\n\n", vp_passageiros[idPassageiro]->nomePassageiro, vp_estacoes[idEstacao]->nomeEstacao);
+    // printf("%s", ctime(&vp_passageiros[idPassageiro]->horarioEntrada));
+    // printf("%s entrou na estacao: %s\n\n", vp_passageiros[idPassageiro]->nomePassageiro, vp_estacoes[idEstacao]->nomeEstacao);
 }
 
 /**
@@ -125,6 +131,32 @@ void registrarSaida(int idPassageiro, int idEstacaoDeChegada){
     vp_passageiros[idPassageiro]->horarioSaida = momentoVisita;
     vp_passageiros[idPassageiro]->estacaoSaida= idEstacaoDeChegada;
 
-    printf(ctime(&vp_passageiros[idPassageiro]->horarioSaida));
-    printf("%s saiu na estacao %s\n\n", vp_passageiros[idPassageiro]->nomePassageiro, vp_estacoes[idEstacaoDeChegada]->nomeEstacao);
+    // printf("%s", ctime(&vp_passageiros[idPassageiro]->horarioSaida));
+    // printf("%s saiu na estacao: %s\n\n", vp_passageiros[idPassageiro]->nomePassageiro, vp_estacoes[idEstacaoDeChegada]->nomeEstacao);
+}
+
+/**
+ * Gera um relatório exibindo todos os passageiros cadastrados e suas informações.
+ * Também exibe todas as estações cadastradas e suas informações.
+*/
+void gerarRelatorio() {
+    int tamVp_passageiros = sizeof(vp_passageiros) / sizeof(vp_passageiros[0]);
+
+    printf("------------------------------------\n");
+    printf("Passageiros\n");
+    printf("------------------------------------\n");
+    for (int idPassageiro = 0; idPassageiro < tamVp_passageiros; idPassageiro++) {
+        printf("Nome: %s\n", vp_passageiros[idPassageiro]->nomePassageiro);
+        printf("ID: %d\n", vp_passageiros[idPassageiro]->idCartao);
+
+        printf("Entrada:\n");
+        printf("   Horario: %s", ctime(&vp_passageiros[idPassageiro]->horarioEntrada));
+        printf("   Estacao: %s\n", vp_estacoes[vp_passageiros[idPassageiro]->estacaoEntrada]->nomeEstacao);
+
+        printf("Saida:\n");
+        printf("   Horario: %s", ctime(&vp_passageiros[idPassageiro]->horarioSaida));
+        printf("   Estacao: %s\n", vp_estacoes[vp_passageiros[idPassageiro]->estacaoSaida]->nomeEstacao);
+
+        printf("\n");
+    }
 }

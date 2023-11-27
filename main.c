@@ -14,7 +14,7 @@ int main()
     //imprimindo dados de teste
     printf("Passageiros:\n");
     int i = 0;
-    while(i < 5){
+    while(i < 2){
         printf("\t%d: %s\n", vp_passageiros[i]->idCartao, vp_passageiros[i]->nomePassageiro);
         i++;
     }
@@ -30,6 +30,10 @@ int main()
 
     registrarEntrada(0, 0);
     registrarSaida(0, 1);
+    registrarEntrada(1, 0);
+    registrarSaida(1, 1);
+
+    gerarRelatorio();
 
     return 0;
 }
