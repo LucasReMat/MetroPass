@@ -143,7 +143,7 @@ void gerarRelatorio() {
     int tamVp_passageiros = sizeof(vp_passageiros) / sizeof(vp_passageiros[0]);
 
     printf("------------------------------------\n");
-    printf("Passageiros\n");
+    printf("RELATORIO\n");
     printf("------------------------------------\n");
     for (int idPassageiro = 0; idPassageiro < tamVp_passageiros; idPassageiro++) {
         printf("Nome: %s\n", vp_passageiros[idPassageiro]->nomePassageiro);
@@ -157,6 +157,6 @@ void gerarRelatorio() {
         printf("   Horario: %s", ctime(&vp_passageiros[idPassageiro]->horarioSaida));
         printf("   Estacao: %s\n", vp_estacoes[vp_passageiros[idPassageiro]->estacaoSaida]->nomeEstacao);
 
-        printf("\n");
+        printf("------------------------------------\n");
     }
 }
