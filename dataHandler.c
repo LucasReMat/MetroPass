@@ -48,8 +48,8 @@ void registrarEntrada(int idPassageiro, int idEstacao){
     vp_fluxos[ idEstacao ]->contadorArray += 1;
 
 
-    printf("%s", ctime(&vp_passageiros[idPassageiro]->horarioEntrada));
-    printf("%s entrou na estacao: %s\n\n", vp_passageiros[idPassageiro]->nomePassageiro, vp_estacoes[idEstacao]->nomeEstacao);
+    // printf("%s", ctime(&vp_passageiros[idPassageiro]->horarioEntrada));
+    // printf("%s entrou na estacao: %s\n\n", vp_passageiros[idPassageiro]->nomePassageiro, vp_estacoes[idEstacao]->nomeEstacao);
 }
 
 /**
@@ -58,17 +58,20 @@ void registrarEntrada(int idPassageiro, int idEstacao){
  * @param idPassageiro o id do cartão do passageiro 
  * @param idEstacao o id da estação visitada
 */
-void registrarSaida(int idPassageiro, int idEstacaoDeChegada){
+void registrarSaida(int idPassageiro, int idEstacao){
     time_t momentoVisita = time(NULL);
 
-    vp_estacoes[idEstacaoDeChegada]->visitantesTotais++;
-
-    //cadastrando visita nos dados do passageiro
     vp_passageiros[idPassageiro]->horarioSaida = momentoVisita;
-    vp_passageiros[idPassageiro]->estacaoSaida= idEstacaoDeChegada;
+    vp_passageiros[idPassageiro]->estacaoSaida = idEstacao;
+
+    //criando registro da ação no vetor de fluxos
+    int possicaoFluxo = vp_fluxos[idEstacao]->contadorArray;
+
+    vp_fluxos[ idEstacao ]->tipoAcao[ possicaoFluxo ] = 1;
+    vp_fluxos[ idEstacao ]->contadorArray += 1;
 
     // printf("%s", ctime(&vp_passageiros[idPassageiro]->horarioSaida));
-    // printf("%s saiu na estacao: %s\n\n", vp_passageiros[idPassageiro]->nomePassageiro, vp_estacoes[idEstacaoDeChegada]->nomeEstacao);
+    // printf("%s saiu na estacao: %s\n\n", vp_passageiros[idPassageiro]->nomePassageiro, vp_estacoes[idEstacao]->nomeEstacao);
 }
 
 /**

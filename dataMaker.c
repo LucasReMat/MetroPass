@@ -49,7 +49,7 @@ void cadastrarEstacao(int id){
         vp_fluxos[id]->idEstacao = id;
         vp_fluxos[id]->contadorArray = 0;
 
-        printf("CRIADO COM SUCESSO: %d", vp_fluxos[id]->idEstacao);
+        printf("CRIADO COM SUCESSO: %d\n\n", vp_fluxos[id]->idEstacao);
     }
 
     else{
@@ -82,6 +82,7 @@ void testeData(){
 
         vp_fluxos[i] = (p_fluxo)malloc(sizeof(Fluxo));
         vp_fluxos[i]->idEstacao = i;
+        vp_fluxos[i]->contadorArray = 0;
     }
 
     strcpy(vp_estacoes[0]->nomeEstacao, "Estacao Alberto");
