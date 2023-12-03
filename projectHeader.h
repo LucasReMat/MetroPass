@@ -19,7 +19,7 @@ typedef struct {
  * @param horarioEntrada Horario que o passageiro entrou no metro
  * @param horarioSaida Horario que o passageiro deixou o metro
  * @param estacaoEntrada Estacao pela qual o passageiro entrou
- * @param estacaoSaida Estacao pelaa qual o passageiro saiu
+ * @param estacaoSaida Estacao pela qual o passageiro saiu
 */
 typedef Passageiro *p_passageiro;
 

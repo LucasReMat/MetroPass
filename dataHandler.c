@@ -47,7 +47,6 @@ void registrarEntrada(int idPassageiro, int idEstacao){
     vp_fluxos[ idEstacao ]->tipoAcao[ possicaoFluxo ] = 0;
     vp_fluxos[ idEstacao ]->contadorArray += 1;
 
-
     // printf("%s", ctime(&vp_passageiros[idPassageiro]->horarioEntrada));
     // printf("%s entrou na estacao: %s\n\n", vp_passageiros[idPassageiro]->nomePassageiro, vp_estacoes[idEstacao]->nomeEstacao);
 }
@@ -65,10 +64,10 @@ void registrarSaida(int idPassageiro, int idEstacao){
     vp_passageiros[idPassageiro]->estacaoSaida = idEstacao;
 
     //criando registro da ação no vetor de fluxos
-    int possicaoFluxo = vp_fluxos[idEstacao]->contadorArray;
+    int posicaoFluxo = vp_fluxos[idEstacao]->contadorArray;
 
-    vp_fluxos[ idEstacao ]->tipoAcao[ possicaoFluxo ] = 1;
-    vp_fluxos[ idEstacao ]->contadorArray += 1;
+    vp_fluxos[idEstacao]->tipoAcao[posicaoFluxo] = 1;
+    vp_fluxos[idEstacao]->contadorArray += 1;
 
     // printf("%s", ctime(&vp_passageiros[idPassageiro]->horarioSaida));
     // printf("%s saiu na estacao: %s\n\n", vp_passageiros[idPassageiro]->nomePassageiro, vp_estacoes[idEstacao]->nomeEstacao);
