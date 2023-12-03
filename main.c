@@ -4,12 +4,15 @@
 
 #include "projectHeader.h"
 #include "dataHandler.c"
+#include "dataMaker.c"
 
 int main()
 {
     inicializacao();
 
     testeData();
+
+    cadastrarEstacao(2);
 
     //imprimindo dados de teste
     printf("Passageiros:\n");
@@ -29,11 +32,11 @@ int main()
     printf("\n--------------------------------------\n\n");
 
     registrarEntrada(0, 0);
-    registrarSaida(0, 1);
-    registrarEntrada(1, 0);
-    registrarSaida(1, 1);
+    // registrarSaida(0, 1);
+    // registrarEntrada(1, 0);
+    // registrarSaida(1, 1);
 
-    gerarRelatorio();
+    // gerarRelatorio();
 
     return 0;
 }
