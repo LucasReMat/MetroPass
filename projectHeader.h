@@ -37,7 +37,24 @@ typedef struct
 */
 typedef Estacao *p_estacao;
 
+typedef struct{
+    int idEstacao;
+    //0 para entradas na estação e 1 para saidas da estação
+    int tipoAcao[MAX_ITENS];
+
+    //armazena a ultima possição disponivel da matriz
+    int contadorArray;
+}Fluxo;
+typedef Fluxo *p_fluxo;
+
 p_passageiro vp_passageiros[MAX_ITENS];
 p_estacao vp_estacoes[MAX_ITENS];
+p_fluxo vp_fluxos[MAX_ITENS];
 
 #endif // PROJECTHEADER_H_INCLUDED
+
+/*
+1) Criar um registro de todas as pessoas que passaram por uma estação
+1.5) faazer o registro de um jeito que ele também funcione pra função do jonas
+2) Mostrar esse registro
+*/
