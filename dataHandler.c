@@ -76,26 +76,23 @@ void registrarSaida(int idPassageiro, int idEstacao){
 
 /**
  * Gera um relatório exibindo todos os passageiros cadastrados e suas informações.
+ * @param idPassageiro o id do cartão do passageiro.
  * Também exibe todas as estações cadastradas e suas informações.
 */
-void gerarRelatorio() {
-    int tamVp_passageiros = sizeof(vp_passageiros) / sizeof(vp_passageiros[0]);
-
+void gerarRelatorio(int idPassageiro) {
     printf("------------------------------------\n");
     printf("RELATORIO\n");
     printf("------------------------------------\n");
-    for (int idPassageiro = 0; idPassageiro < tamVp_passageiros; idPassageiro++) {
-        printf("Nome: %s\n", vp_passageiros[idPassageiro]->nomePassageiro);
-        printf("ID: %d\n", vp_passageiros[idPassageiro]->idCartao);
+    printf("Nome: %s\n", vp_passageiros[idPassageiro]->nomePassageiro);
+    printf("ID: %d\n", vp_passageiros[idPassageiro]->idCartao);
 
-        printf("Entrada:\n");
-        printf("   Horario: %s", ctime(&vp_passageiros[idPassageiro]->horarioEntrada));
-        printf("   Estacao: %s\n", vp_estacoes[vp_passageiros[idPassageiro]->estacaoEntrada]->nomeEstacao);
+    printf("Entrada:\n");
+    printf("   Horario: %s", ctime(&vp_passageiros[idPassageiro]->horarioEntrada));
+    printf("   Estacao: %s\n", vp_estacoes[vp_passageiros[idPassageiro]->estacaoEntrada]->nomeEstacao);
 
-        printf("Saida:\n");
-        printf("   Horario: %s", ctime(&vp_passageiros[idPassageiro]->horarioSaida));
-        printf("   Estacao: %s\n", vp_estacoes[vp_passageiros[idPassageiro]->estacaoSaida]->nomeEstacao);
+    printf("Saida:\n");
+    printf("   Horario: %s", ctime(&vp_passageiros[idPassageiro]->horarioSaida));
+    printf("   Estacao: %s\n", vp_estacoes[vp_passageiros[idPassageiro]->estacaoSaida]->nomeEstacao);
 
-        printf("------------------------------------\n");
-    }
+    printf("------------------------------------\n");
 }

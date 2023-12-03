@@ -42,7 +42,7 @@ typedef struct{
     //0 para entradas na estação e 1 para saidas da estação
     int tipoAcao[MAX_ITENS];
 
-    //armazena a ultima possição disponivel da matriz
+    //armazena a ultima posição disponivel da matriz
     int contadorArray;
 }Fluxo;
 typedef Fluxo *p_fluxo;

@@ -36,7 +36,7 @@ int main()
     registrarEntrada(1, 0);
     registrarSaida(1, 1);
 
-    // gerarRelatorio();
+    gerarRelatorio(0);
 
     return 0;
 }
