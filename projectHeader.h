@@ -7,10 +7,15 @@
 typedef struct {
     int idCartao;
     char nomePassageiro[MAX_ITENS_NOMES];
-    time_t horarioEntrada;
-    time_t horarioSaida;
-    int estacaoEntrada;
-    int estacaoSaida;
+    int estacaoVisitada[MAX_ITENS];
+    int idFluxoAcao[MAX_ITENS];
+
+    int visitas;
+
+    // time_t horarioEntrada;
+    // time_t horarioSaida;
+    // int estacaoEntrada;
+    // int estacaoSaida;
 } Passageiro;
 /**
  * O ponteiro para a struct Passageiro que registra os dados de transito e informações de id dos passageiros que passam pela estação.
@@ -41,6 +46,9 @@ typedef struct{
     int idEstacao;
     //0 para entradas na estação e 1 para saidas da estação
     int tipoAcao[MAX_ITENS];
+    int dia[MAX_ITENS];
+    int mes[MAX_ITENS];
+    int hora[MAX_ITENS];
 
     //armazena a ultima posição disponivel da matriz
     int contadorArray;

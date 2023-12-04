@@ -36,22 +36,29 @@ void menuPrincipal()
 void registrarEntrada(int idPassageiro, int idEstacao)
 {
     time_t momentoVisita = time(NULL);
-
+    struct tm momentoVisitaTm = *localtime(&momentoVisita);
+    
     // cadastrando visita nos dados da estacao
     vp_estacoes[idEstacao]->visitantesTotais++;
-
-    // cadastrando visita nos dados do passageiro
-    vp_passageiros[idPassageiro]->horarioEntrada = momentoVisita;
-    vp_passageiros[idPassageiro]->estacaoEntrada = idEstacao;
 
     // cadastrar entrada na estação
     int posicaoFluxo = vp_fluxos[idEstacao]->contadorArray;
 
     vp_fluxos[idEstacao]->tipoAcao[posicaoFluxo] = 0;
-    vp_fluxos[idEstacao]->contadorArray += 1;
 
-    // printf("%s", ctime(&vp_passageiros[idPassageiro]->horarioEntrada));
-    // printf("%s entrou na estacao: %s\n\n", vp_passageiros[idPassageiro]->nomePassageiro, vp_estacoes[idEstacao]->nomeEstacao);
+    vp_fluxos[idEstacao]->dia[posicaoFluxo] = momentoVisitaTm.tm_mday;
+    vp_fluxos[idEstacao]->mes[posicaoFluxo] = momentoVisitaTm.tm_mon + 1;
+    vp_fluxos[idEstacao]->hora[posicaoFluxo] = momentoVisitaTm.tm_hour;
+
+    //cadastrar entrada no passageiro
+    int posicaoVisita = vp_passageiros[idPassageiro]->visitas;
+
+    vp_passageiros[idPassageiro]->estacaoVisitada[posicaoVisita] = idEstacao;
+    vp_passageiros[idPassageiro]->idFluxoAcao[posicaoVisita] = posicaoFluxo;
+
+    //somando 1 aos contadores
+    vp_fluxos[idEstacao]->contadorArray += 1;
+    vp_passageiros[idPassageiro]->visitas += 1;
 }
 
 /**
@@ -63,18 +70,26 @@ void registrarEntrada(int idPassageiro, int idEstacao)
 void registrarSaida(int idPassageiro, int idEstacao)
 {
     time_t momentoVisita = time(NULL);
+    struct tm momentoVisitaTm = *localtime(&momentoVisita);
 
-    vp_passageiros[idPassageiro]->horarioSaida = momentoVisita;
-    vp_passageiros[idPassageiro]->estacaoSaida = idEstacao;
-
-    // criando registro da ação no vetor de fluxos
+    // cadastrar entrada na estação
     int posicaoFluxo = vp_fluxos[idEstacao]->contadorArray;
 
     vp_fluxos[idEstacao]->tipoAcao[posicaoFluxo] = 1;
-    vp_fluxos[idEstacao]->contadorArray += 1;
 
-    // printf("%s", ctime(&vp_passageiros[idPassageiro]->horarioSaida));
-    // printf("%s saiu na estacao: %s\n\n", vp_passageiros[idPassageiro]->nomePassageiro, vp_estacoes[idEstacao]->nomeEstacao);
+    vp_fluxos[idEstacao]->dia[posicaoFluxo] = momentoVisitaTm.tm_mday;
+    vp_fluxos[idEstacao]->mes[posicaoFluxo] = momentoVisitaTm.tm_mon + 1;
+    vp_fluxos[idEstacao]->hora[posicaoFluxo] = momentoVisitaTm.tm_hour;
+
+    //cadastrar entrada no passageiro
+    int posicaoVisita = vp_passageiros[idPassageiro]->visitas;
+
+    vp_passageiros[idPassageiro]->estacaoVisitada[posicaoVisita] = idEstacao;
+    vp_passageiros[idPassageiro]->idFluxoAcao[posicaoVisita] = posicaoFluxo;
+
+    //somando 1 aos contadores
+    vp_fluxos[idEstacao]->contadorArray += 1;
+    vp_passageiros[idPassageiro]->visitas += 1;
 }
 
 void verPassageiros()
@@ -104,21 +119,58 @@ void verEstacoes()
  * @param idPassageiro o id do cartão do passageiro.
  * Também exibe todas as estações cadastradas e suas informações.
  */
-void gerarRelatorio(int idPassageiro)
+void gerarRelatorio(int idPassageiro, int mesInicial, int mesFinal)
 {
+    int posicaoVisita = vp_passageiros[idPassageiro]->visitas;
+
     printf("------------------------------------\n");
     printf("RELATORIO\n");
     printf("------------------------------------\n");
     printf("Nome: %s\n", vp_passageiros[idPassageiro]->nomePassageiro);
     printf("ID: %d\n", vp_passageiros[idPassageiro]->idCartao);
 
-    printf("Entrada:\n");
-    printf("   Horario: %s", ctime(&vp_passageiros[idPassageiro]->horarioEntrada));
-    printf("   Estacao: %s\n", vp_estacoes[vp_passageiros[idPassageiro]->estacaoEntrada]->nomeEstacao);
+    for (int i = 0; i < posicaoVisita; i++)
+    {
+        int estacaoVisitada = vp_passageiros[idPassageiro]->estacaoVisitada[i];
+        int idFluxoAcao = vp_passageiros[idPassageiro]->idFluxoAcao[i];
 
-    printf("Saida:\n");
-    printf("   Horario: %s", ctime(&vp_passageiros[idPassageiro]->horarioSaida));
-    printf("   Estacao: %s\n", vp_estacoes[vp_passageiros[idPassageiro]->estacaoSaida]->nomeEstacao);
+        int tipoAcao = vp_fluxos[estacaoVisitada]->tipoAcao[idFluxoAcao];
+
+        if(vp_fluxos[estacaoVisitada]->mes[idFluxoAcao] >= mesInicial && vp_fluxos[estacaoVisitada]->mes[idFluxoAcao] <= mesFinal){
+            switch (tipoAcao)
+            {
+                case 0:
+                    printf("Entrada:\n");
+                    break;
+                
+                case 1:
+                    printf("Saida:\n");
+                    break;
+                
+                default:
+                    printf("ERROR TIPO DE AÇÃO INVALIDO!!!");
+                    break;
+            }
+
+            printf
+            (
+                "\tHorario: %dh - %d/%d\n", 
+                vp_fluxos[estacaoVisitada]->hora[idFluxoAcao], vp_fluxos[estacaoVisitada]->dia[idFluxoAcao], vp_fluxos[estacaoVisitada]->mes[idFluxoAcao]
+            );
+
+            printf("\tEstacao: %s\n", vp_estacoes[estacaoVisitada]->nomeEstacao);
+        }
+        
+    }
+    
+
+    // printf("Entrada:\n");
+    // printf("   Horario: %s", ctime(&vp_passageiros[idPassageiro]->horarioEntrada));
+    // printf("   Estacao: %s\n", vp_estacoes[vp_passageiros[idPassageiro]->estacaoEntrada]->nomeEstacao);
+
+    // printf("Saida:\n");
+    // printf("   Horario: %s", ctime(&vp_passageiros[idPassageiro]->horarioSaida));
+    // printf("   Estacao: %s\n", vp_estacoes[vp_passageiros[idPassageiro]->estacaoSaida]->nomeEstacao);
 
     printf("------------------------------------\n");
 }

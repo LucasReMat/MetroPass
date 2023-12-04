@@ -7,6 +7,9 @@ void menu() {
   int temp_id_passageiro;
   int temp_id_estacao;
 
+  int temp_mes_inicial;
+  int temp_mes_final;
+
   // menu para escolher as opcoes e usar o '5' para sair do programa
     while (opcao != 9)
     {
@@ -73,7 +76,13 @@ void menu() {
             printf("Informe o ID do passageiro: ");
             scanf("%d", &temp_id_passageiro);
 
-            gerarRelatorio(temp_id_passageiro);
+            printf("Informe o MES inicial para a busca: ");
+            scanf("%d", &temp_mes_inicial);
+
+            printf("Informe o MES final para a busca: ");
+            scanf("%d", &temp_mes_final);
+
+            gerarRelatorio(temp_id_passageiro, temp_mes_inicial, temp_mes_final);
             break;
 
         case 8:

@@ -17,6 +17,7 @@ void cadastrarPassageiro(int id){
         fflush(stdin);
 
         vp_passageiros[id]->idCartao = id;
+        vp_passageiros[id]->visitas = 0;
 
         printf("Digite o nome do passageiro:\n");
         gets(vp_passageiros[id]->nomePassageiro);
