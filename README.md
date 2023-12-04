@@ -15,8 +15,4 @@ O programa consiste em uma simulação de controle e registro de entrada e saíd
 
 # Autores
 
-Jonas Soares
-Lucas Reis
-Lucca Pinz
-Mateus Montedioca
-Pedro Donato
+Jonas Soares, Lucas Reis, Lucca Pinz, Mateus Montedioca, Pedro Donato
