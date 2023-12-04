@@ -13,7 +13,7 @@ O programa consiste em uma simulação de controle e registro de entrada e saíd
 
 # Estrutura do projeto 
 
-- dataHandler: Registra uma entrada em uma estação. Esta ação aumenta o número total de visitantes e visitantes atuais da estação, além disso também registra a estação de entrada de um passageiro e o horário que o mesmo o fez.
+- dataHandler: Registra uma entrada em uma estação. Esta ação aumenta o número total de visitantes e visitantes atuais da estação, além disso também registra a estação de entrada de um passageiro e o horário que o mesmo o fez. Ademais, gera um relatório sobre um passageiro escolhido e o fluxo de uma estação.
 - dataMaker: Cadastra um novo passageiro ou uma nova estação.
 - menu: Menu para escolher entre as opções: cadastrar passageiros, cadastrar estações, registrar entrada, registrar saída, ver passageiros, ver estações, gerar relatório, gerar fluxo das estações ou sair do programa.
 
