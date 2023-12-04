@@ -7,19 +7,21 @@
 
 /**
  * Limpa os vetores de ponteiros vp_estacoes e vp_passageiros preenchendo ambos com a informação NULL
-*/
-void inicializacao(){
+ */
+void inicializacao()
+{
     int i;
 
-    for (i=0; i<MAX_ITENS; i++){
+    for (i = 0; i < MAX_ITENS; i++)
+    {
         vp_estacoes[i] = NULL;
         vp_passageiros[i] = NULL;
         vp_fluxos[i] = NULL;
     }
-
 }
 
-void menuPrincipal() {
+void menuPrincipal()
+{
     printf("------------------------------------\n");
     printf("SISTEMA DE CONTROLE\n");
     printf("------------------------------------\n");
@@ -28,42 +30,44 @@ void menuPrincipal() {
 /**
  * Registra uma entrada em uma estação. esta ação aumenta o numero total de visitantes e visitantes atuais da estação, além disso
  * também registra a estação de entrada de um passageiro e o horario que o mesmo o fez.
- * @param idPassageiro o id do cartão do passageiro 
+ * @param idPassageiro o id do cartão do passageiro
  * @param idEstacao o id da estação visitada
-*/
-void registrarEntrada(int idPassageiro, int idEstacao){
+ */
+void registrarEntrada(int idPassageiro, int idEstacao)
+{
     time_t momentoVisita = time(NULL);
 
-    //cadastrando visita nos dados da estacao
+    // cadastrando visita nos dados da estacao
     vp_estacoes[idEstacao]->visitantesTotais++;
 
-    //cadastrando visita nos dados do passageiro
+    // cadastrando visita nos dados do passageiro
     vp_passageiros[idPassageiro]->horarioEntrada = momentoVisita;
     vp_passageiros[idPassageiro]->estacaoEntrada = idEstacao;
 
-    //cadastrar entrada na estação
-    int possicaoFluxo = vp_fluxos[idEstacao]->contadorArray;
+    // cadastrar entrada na estação
+    int posicaoFluxo = vp_fluxos[idEstacao]->contadorArray;
 
-    vp_fluxos[ idEstacao ]->tipoAcao[ possicaoFluxo ] = 0;
-    vp_fluxos[ idEstacao ]->contadorArray += 1;
+    vp_fluxos[idEstacao]->tipoAcao[posicaoFluxo] = 0;
+    vp_fluxos[idEstacao]->contadorArray += 1;
 
     // printf("%s", ctime(&vp_passageiros[idPassageiro]->horarioEntrada));
     // printf("%s entrou na estacao: %s\n\n", vp_passageiros[idPassageiro]->nomePassageiro, vp_estacoes[idEstacao]->nomeEstacao);
 }
 
 /**
- * Registra uma saida em uma estação, esta ação não afeta o numero total de visitantes. 
+ * Registra uma saida em uma estação, esta ação não afeta o numero total de visitantes.
  * diminui os visitantes atuais da estação de origem e aumenta os da estação de chegada.
- * @param idPassageiro o id do cartão do passageiro 
+ * @param idPassageiro o id do cartão do passageiro
  * @param idEstacao o id da estação visitada
-*/
-void registrarSaida(int idPassageiro, int idEstacao){
+ */
+void registrarSaida(int idPassageiro, int idEstacao)
+{
     time_t momentoVisita = time(NULL);
 
     vp_passageiros[idPassageiro]->horarioSaida = momentoVisita;
     vp_passageiros[idPassageiro]->estacaoSaida = idEstacao;
 
-    //criando registro da ação no vetor de fluxos
+    // criando registro da ação no vetor de fluxos
     int posicaoFluxo = vp_fluxos[idEstacao]->contadorArray;
 
     vp_fluxos[idEstacao]->tipoAcao[posicaoFluxo] = 1;
@@ -73,12 +77,35 @@ void registrarSaida(int idPassageiro, int idEstacao){
     // printf("%s saiu na estacao: %s\n\n", vp_passageiros[idPassageiro]->nomePassageiro, vp_estacoes[idEstacao]->nomeEstacao);
 }
 
+void verPassageiros()
+{
+    printf("Passageiros:\n");
+    int i = 0;
+    while (vp_passageiros[i] != NULL)
+    {
+        printf("\t%d: %s\n", vp_passageiros[i]->idCartao, vp_passageiros[i]->nomePassageiro);
+        i++;
+    }
+}
+
+void verEstacoes()
+{
+    printf("Estacoes:\n");
+    int i = 0;
+    while (vp_estacoes[i] != NULL)
+    {
+        printf("\t%d: %s\n", vp_estacoes[i]->id, vp_estacoes[i]->nomeEstacao);
+        i++;
+    }
+}
+
 /**
  * Gera um relatório exibindo todos os passageiros cadastrados e suas informações.
  * @param idPassageiro o id do cartão do passageiro.
  * Também exibe todas as estações cadastradas e suas informações.
-*/
-void gerarRelatorio(int idPassageiro) {
+ */
+void gerarRelatorio(int idPassageiro)
+{
     printf("------------------------------------\n");
     printf("RELATORIO\n");
     printf("------------------------------------\n");
@@ -95,9 +122,10 @@ void gerarRelatorio(int idPassageiro) {
 
     printf("------------------------------------\n");
 }
-//Função que mostra o fluxo da estacao escolhida com o total de entrada, total de saida, e o total de ambos, com um looping para gerar o fluxo de cada estacao individual
-void gerarfluxoEstacao(int idEstacao){
-    int totalEntrada=0, totalSaida=0, total=0;
+// Função que mostra o fluxo da estacao escolhida com o total de entrada, total de saida, e o total de ambos, com um looping para gerar o fluxo de cada estacao individual
+void gerarfluxoEstacao(int idEstacao)
+{
+    int totalEntrada = 0, totalSaida = 0, total = 0;
     int tamanhoArr = (int)(vp_fluxos[idEstacao]->contadorArray);
     for (int i = 0; i < tamanhoArr; i++)
     {
@@ -105,17 +133,18 @@ void gerarfluxoEstacao(int idEstacao){
         printf("FLUXO DA ESTACAO: %s", vp_estacoes[i]->nomeEstacao);
         printf("\n--------------------------------------\n\n");
 
-        if(vp_fluxos[idEstacao]->tipoAcao[i] == 0){
+        if (vp_fluxos[idEstacao]->tipoAcao[i] == 0)
+        {
             totalEntrada++;
-        }else{
+        }
+        else
+        {
             totalSaida++;
         }
-        total= totalEntrada+totalSaida;
+        total = totalEntrada + totalSaida;
         printf("TOTAL ENTRADAS: %d \n", totalEntrada);
         printf("TOTAL SAIDAS: %d \n", totalSaida);
         printf("TOTAL: %d \n", total);
         printf("\n--------------------------------------\n\n");
-
     }
-      
 }

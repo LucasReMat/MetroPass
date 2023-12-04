@@ -23,7 +23,7 @@ void cadastrarPassageiro(int id){
     }
 
     else{
-        printf("ERROR! ID DE PASSAGEIRO JÁ CADASTRADO!");
+        printf("ERROR! ID DE PASSAGEIRO JA CADASTRADO!");
     }
 }
 

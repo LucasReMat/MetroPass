@@ -55,6 +55,6 @@ p_fluxo vp_fluxos[MAX_ITENS];
 
 /*
 1) Criar um registro de todas as pessoas que passaram por uma estação
-1.5) faazer o registro de um jeito que ele também funcione pra função do jonas
+1.5) fazer o registro de um jeito que ele também funcione pra função do jonas
 2) Mostrar esse registro
 */
