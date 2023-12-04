@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "projectHeader.h"
 #include "dataMaker.c"
 #include "dataHandler.c"

@@ -92,6 +92,10 @@ void registrarSaida(int idPassageiro, int idEstacao)
     vp_passageiros[idPassageiro]->visitas += 1;
 }
 
+/**
+ * Exibe uma lista dos passageiros cadastrados no sistema
+*/
+
 void verPassageiros()
 {
     printf("Passageiros:\n");
@@ -102,6 +106,10 @@ void verPassageiros()
         i++;
     }
 }
+
+/**
+ * Exibe uma lista das estações cadastradas no sistema
+*/
 
 void verEstacoes()
 {
@@ -117,6 +125,8 @@ void verEstacoes()
 /**
  * Gera um relatório exibindo todos os passageiros cadastrados e suas informações.
  * @param idPassageiro o id do cartão do passageiro.
+ * @param mesInicial valor inicial do intervalo na qual será usada para a busca dos dados para o relatório.
+ * @param mesFinal valor final do intervalo na qual será usada para a busca dos dados para o relatório.
  * Também exibe todas as estações cadastradas e suas informações.
  */
 void gerarRelatorio(int idPassageiro, int mesInicial, int mesFinal)
@@ -162,19 +172,14 @@ void gerarRelatorio(int idPassageiro, int mesInicial, int mesFinal)
         }
         
     }
-    
-
-    // printf("Entrada:\n");
-    // printf("   Horario: %s", ctime(&vp_passageiros[idPassageiro]->horarioEntrada));
-    // printf("   Estacao: %s\n", vp_estacoes[vp_passageiros[idPassageiro]->estacaoEntrada]->nomeEstacao);
-
-    // printf("Saida:\n");
-    // printf("   Horario: %s", ctime(&vp_passageiros[idPassageiro]->horarioSaida));
-    // printf("   Estacao: %s\n", vp_estacoes[vp_passageiros[idPassageiro]->estacaoSaida]->nomeEstacao);
 
     printf("------------------------------------\n");
 }
-// Função que mostra o fluxo da estacao escolhida com o total de entrada, total de saida e o total de ambos, com um looping para gerar o fluxo de cada estacao individual
+
+/**
+ * Função que mostra o fluxo da estacao escolhida com o total de entrada, total de saida e o total de ambos, com um looping para gerar o fluxo de cada estacao individual
+ * @param idEstacao o id da estação escolhida
+*/
 void gerarfluxoEstacao(int idEstacao)
 {
     int totalEntrada = 0, totalSaida = 0, total = 0;
