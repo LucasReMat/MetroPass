@@ -130,7 +130,7 @@ void gerarfluxoEstacao(int idEstacao)
     for (int i = 0; i < tamanhoArr; i++)
     {
         printf("\n--------------------------------------\n");
-        printf("FLUXO DA ESTACAO: %s", vp_estacoes[i]->nomeEstacao);
+        printf("FLUXO DA ESTACAO: %s", vp_estacoes[idEstacao]->nomeEstacao);
         printf("\n--------------------------------------\n\n");
 
         if (vp_fluxos[idEstacao]->tipoAcao[i] == 0)
