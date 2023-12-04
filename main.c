@@ -40,7 +40,7 @@ int main()
     gerarRelatorio(0);
     gerarfluxoEstacao(0);
     
-    
+    //menu para escolher as opcoes e usar o '5' para sair do programa
     do{
         
         printf("Menu Principal \n");
