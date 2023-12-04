@@ -129,10 +129,6 @@ void gerarfluxoEstacao(int idEstacao)
     int tamanhoArr = (int)(vp_fluxos[idEstacao]->contadorArray);
     for (int i = 0; i < tamanhoArr; i++)
     {
-        printf("\n--------------------------------------\n");
-        printf("FLUXO DA ESTACAO: %s", vp_estacoes[idEstacao]->nomeEstacao);
-        printf("\n--------------------------------------\n\n");
-
         if (vp_fluxos[idEstacao]->tipoAcao[i] == 0)
         {
             totalEntrada++;
@@ -141,10 +137,14 @@ void gerarfluxoEstacao(int idEstacao)
         {
             totalSaida++;
         }
-        total = totalEntrada + totalSaida;
-        printf("TOTAL ENTRADAS: %d \n", totalEntrada);
-        printf("TOTAL SAIDAS: %d \n", totalSaida);
-        printf("TOTAL: %d \n", total);
-        printf("\n--------------------------------------\n\n");
+        total = totalEntrada + totalSaida; 
+        
     }
+    printf("\n--------------------------------------\n");
+    printf("Fluxo da estacao: %s", vp_estacoes[idEstacao]->nomeEstacao);
+    printf("\n--------------------------------------\n\n");
+    printf("Total entradas: %d \n", totalEntrada);
+    printf("Total saidas: %d \n", totalSaida);
+    printf("Total: %d \n", total);
+    printf("\n--------------------------------------\n\n");
 }
