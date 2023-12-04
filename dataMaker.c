@@ -57,35 +57,3 @@ void cadastrarEstacao(int id){
         printf("ERROR! ID DE ESTACAO JÁ CADASTRADO!");
     }
 }
-
-/**
- * Gera dados para os testes, gera 5 passageiros e 2 estações
-*/
-void testeData(){
-    //cadastrando passageiros
-    for (int i = 0; i < 2; i++)
-    {
-        vp_passageiros[i] = (p_passageiro)malloc(sizeof(Passageiro));
-        vp_passageiros[i]->idCartao = i;
-    }
-
-    strcpy(vp_passageiros[0]->nomePassageiro, "Lucas");
-    strcpy(vp_passageiros[1]->nomePassageiro, "Jonas");
-    // strcpy(vp_passageiros[2]->nomePassageiro, "Lucca");
-    // strcpy(vp_passageiros[3]->nomePassageiro, "Mat");
-    // strcpy(vp_passageiros[4]->nomePassageiro, "Pedro");
-
-    //Cadastrando estações
-    for (int i = 0; i < 2; i++)
-    {
-        vp_estacoes[i] = (p_estacao)malloc(sizeof(Estacao));
-        vp_estacoes[i]->id = i;
-
-        vp_fluxos[i] = (p_fluxo)malloc(sizeof(Fluxo));
-        vp_fluxos[i]->idEstacao = i;
-        vp_fluxos[i]->contadorArray = 0;
-    }
-
-    strcpy(vp_estacoes[0]->nomeEstacao, "Estacao Alberto");
-    strcpy(vp_estacoes[1]->nomeEstacao, "Estacao Bazille");
-}
