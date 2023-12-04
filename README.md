@@ -2,7 +2,7 @@
 
 O MetroPass é um programa desenvolvido em C feito para a disciplina de Linguagens de Programação (segundo semestre do curso de Análise e Desenvolvimento de Sistemas, FATEC Mogi Mirim).
 
-O programa consiste em uma simulação de controle de entrada e saída de passageiros em uma estação de metrô, onde o sistema registra a entrada e saída de passageiros, além de fornecer relatórios de fluxo em intervalos de tempo.
+O programa consiste em uma simulação de controle e registro de entrada e saída de passageiros em uma estação de metrô, além de fornecer relatórios de fluxo em intervalos de tempo.
 
 # Tecnologias utilizadas
 
