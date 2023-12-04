@@ -11,6 +11,12 @@ O programa consiste em uma simulação de controle e registro de entrada e saíd
 - #include <time.h> (Manipulação de unidades de tempo)
 - #include <string.h> (Fornece funções, macros e definições da biblioteca padrão da linguagem de programação C para manipulação de cadeias de caracteres e regiões de memória)
 
+# Estrutura do projeto 
+
+- dataHandler: Registra uma entrada em uma estação. Esta ação aumenta o número total de visitantes e visitantes atuais da estação, além disso também registra a estação de entrada de um passageiro e o horário que o mesmo o fez.
+- dataMaker: Cadastra um novo passageiro ou uma nova estação.
+- menu: Menu para escolher entre as opções: cadastrar passageiros, cadastrar estações, registrar entrada, registrar saída, ver passageiros, ver estações, gerar relatório, gerar fluxo das estações ou sair do programa.
+
 # Como executar o projeto
 
 - Baixar arquivos do GitHub com o GitClone
