@@ -95,3 +95,27 @@ void gerarRelatorio(int idPassageiro) {
 
     printf("------------------------------------\n");
 }
+//Função que mostra o fluxo da estacao escolhida com o total de entrada, total de saida, e o total de ambos, com um looping para gerar o fluxo de cada estacao individual
+void gerarfluxoEstacao(int idEstacao){
+    int totalEntrada=0, totalSaida=0, total=0;
+    int tamanhoArr = (int)(vp_fluxos[idEstacao]->contadorArray);
+    for (int i = 0; i < tamanhoArr; i++)
+    {
+        printf("\n--------------------------------------\n");
+        printf("FLUXO DA ESTACAO: %s", vp_estacoes[i]->nomeEstacao);
+        printf("\n--------------------------------------\n\n");
+
+        if(vp_fluxos[idEstacao]->tipoAcao[i] == 0){
+            totalEntrada++;
+        }else{
+            totalSaida++;
+        }
+        total= totalEntrada+totalSaida;
+        printf("TOTAL ENTRADAS: %d \n", totalEntrada);
+        printf("TOTAL SAIDAS: %d \n", totalSaida);
+        printf("TOTAL: %d \n", total);
+        printf("\n--------------------------------------\n\n");
+
+    }
+      
+}
