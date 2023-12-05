@@ -20,12 +20,6 @@ void inicializacao()
     }
 }
 
-void menuPrincipal()
-{
-    printf("------------------------------------\n");
-    printf("SISTEMA DE CONTROLE\n");
-    printf("------------------------------------\n");
-}
 
 /**
  * Registra uma entrada em uma estação. esta ação aumenta o numero total de visitantes e visitantes atuais da estação, além disso

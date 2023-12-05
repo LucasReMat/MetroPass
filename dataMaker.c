@@ -24,7 +24,7 @@ void cadastrarPassageiro(int id){
     }
 
     else{
-        printf("ERROR! ID DE PASSAGEIRO JA CADASTRADO!");
+        printf("ERROR! ID DE PASSAGEIRO JA CADASTRADO!\n");
     }
 }
 
@@ -54,6 +54,6 @@ void cadastrarEstacao(int id){
     }
 
     else{
-        printf("ERROR! ID DE ESTACAO JÁ CADASTRADO!");
+        printf("ERROR! ID DE ESTACAO JÁ CADASTRADO!\n");
     }
 }
