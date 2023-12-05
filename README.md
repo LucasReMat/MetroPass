@@ -4,6 +4,8 @@ O MetroPass é um programa desenvolvido em C feito para a disciplina de Linguage
 
 O programa consiste em uma simulação de controle e registro de entrada e saída de passageiros em uma estação de metrô, além de fornecer relatórios de fluxo em intervalos de tempo.
 
+Caso queira saber mais acesse o link do youtube a seguir: https://www.youtube.com/watch?v=vNAjdxQdGYw
+
 # Bibliotecas em C utilizadas
 
 - #include <stdio.h> (Input e Output)
